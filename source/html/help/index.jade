@@ -1,20 +1,41 @@
-extends ../_layouts/page.jade
+extends ../_layouts/page_landing.jade
+block append head  
+	script(src='/deploy/js/controllers/tm.js')
 block content
 	#application
-		.row
+		.row(ng-controller='libraryController')
 			.column-3
-				.lge-container
-					.div(data-spay="affix", data-offset-top="60", data-offset-bottom="200")
-						if library
-							each view in library.Views
-								h4= view.Title
-								ul.sidebar
-									each article in view.Articles
-										li
-											a(href= '/help/' + article.Id)
-												= article.Title
-			.column-6#help-docs
-				.lge-container
-					if title
-						h2= title
-					!= content
+				div(class="lge-container")
+					div(data-spay="affix", data-offset-top="60", data-offset-bottom="200")
+						div(ng-repeat="view in tmLibrary.Views")
+							h4.grey(ng-click="isCollapsed=!isCollapsed" style="cursor:pointer;") {{view.Title}}
+							ul(ng-class="{'sidebar-collapsed': isCollapsed, 'sidebar': !isCollapsed}")
+								li(ng-repeat="article in view.Articles")
+									a(href="#" ng-click="getContentAsync(article.Id,article.Title)") {{article.Title}}
+			.column-6
+					div(class="lge_container" ng-show="!payload.length>0 && rendered")
+						h2.grey TEAM Mentor Documents
+						br
+						p Welcome to the TEAM Mentor Documentation Website where you will find detailed information on how to install TEAM Mentor, how it works and how to customize it.
+
+						br
+						h3.dark-grey TEAM Mentor in action: 
+
+						p
+							:markdown
+								* [TEAM Mentor with OWASP Top 10 Library](https://owasp.teammentor.net/teamMentor)
+								* [TEAM Mentor with SI Library](https://teammentor.net/teamMentor)
+								* [Branded page for TEAM Mentor Evaluation](https://docs.teammentor.net/xml/Eval)
+								* [Branded page for TEAM Mentor Customers](https://docs.teammentor.net/xml/Customer)
+
+						br
+						h3.dark-grey TEAM Mentor Related Sites
+
+						p Other places to get information about TeamMentor:
+
+						p
+							:markdown
+								* [TEAM Mentor Discussion Group](https://groups.google.com/a/securityinnovation.com/forum/#!forum/teammentor)
+								* [TEAM Mentor information at Security Innovation website](https://www.securityinnovation.com/products/team-academy/secure-development-knowledgebase/)
+					div(class="lge-container" ng-bind-html="body")
+	

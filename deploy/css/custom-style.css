@@ -29,6 +29,7 @@
 
   .column-6 {
     width: 50%;
+	margin-left: 360px;
   }
 
   .column-5 {
@@ -41,6 +42,9 @@
 
   .column-3 {
     width: 25%;
+	position: fixed;
+	height: 90%;
+	overflow: auto;
   }
 
   .column-2 {
@@ -464,6 +468,14 @@ ul ul, ol ul {
 ul.sidebar, ol.sidebar {
   margin: 0 0 0 -30px;
   list-style-type: none;
+  display: block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/lucybloomfield\/Client\/TM\%204\.0\/source\/scss\/custom-style\.scss}line{font-family:\00003383}}
+ul.sidebar-collapsed {
+  margin: 0 0 0 -30px;
+  list-style-type: none;
+  display: none;
+  cursor: hand;
 }
 ul.sidebar li, ol.sidebar li {
   margin-bottom: 2px;
