@@ -51,12 +51,30 @@ mixin links-home__navigate
 			a(href='../articles/my-search-items')
 				| My Saved Searches
 
-		select
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
+		button.button.dropdown(href='#', data-dropdown='directory-button', aria-controls='directory-button', aria-expanded='false') Select a Directory
+		br
+		ul#directory-button.f-dropdown(data-dropdown-content='', aria-hidden='true', tabindex='-1')
+			li
+				a(href='../articles/fundamentals-of-security')
+					Attacks & Vulnerabilities
+				// a
+			// li
+			li
+				a(href='../articles/fundamentals-of-security')
+					Principles & Standards
+				// a
+			// li
+			li
+				a(href='../articles/my-articles')
+					My Articles
+				// a
+			// li
+			li
+				a(href='../articles/my-search-items')
+					My Saved Searches
+				// a
+			// li
+		// ul
 
 mixin links_user_pages
 	h3 Account Details
