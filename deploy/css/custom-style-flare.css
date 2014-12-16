@@ -142,8 +142,20 @@ nav a:hover, nav a p:hover {
 }
 
 #directory-list .list-group {
-    display: none;
-  }
+  display: none;
+}
+
+#directory-list button {
+  display: block;
+  background-color: #f5f5f5;
+  text-align: left;
+  text-transform: none;
+  font-weight: normal !important;
+  color: #444444;
+  border: none;
+  padding-left: 15px;
+
+}
 
 /* ===== == = === 20em (320px) === = == ===== */
 
@@ -179,7 +191,6 @@ nav a:hover, nav a p:hover {
     max-height: 86%;
     flex-direction: row;
     -webkit-flex-wrap: nowrap;
-    -webkit-align-items: flex-start;
   }
 
   #logo {
@@ -247,6 +258,10 @@ nav a:hover, nav a p:hover {
 
   #directory-list .list-group {
     display: block;
+  }
+
+  #directory-list button {
+    display: none;
   }
 }
 

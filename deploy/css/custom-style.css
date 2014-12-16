@@ -776,6 +776,7 @@ table td {
 }
 .breadcrumbs li a:hover {
   color: #8aaf3e !important;
+  text-decoration: none;
 }
 .breadcrumbs li:first-child:before {
   content: " ";

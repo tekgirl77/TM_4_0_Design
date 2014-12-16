@@ -177,10 +177,13 @@ mixin flare-directory-list
 				// table
 			// link
 		// list-group
-		select
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
-			option(value='Directory') Directory
+		button.button.dropdown(href='#', data-dropdown='directory-button', aria-controls='directory-button', aria-expanded='false') Choose a Directory
+		br
+		ul#directory-button.f-dropdown(data-dropdown-content='', aria-hidden='true', tabindex='-1')
+			li
+				a(href='#') Directory
+			li
+				a(href='#') Directory
+			li
+				a(href='#') Directory
 	// directory-list
