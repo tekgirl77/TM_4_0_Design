@@ -1,18 +1,100 @@
 extends ../_layouts/flare_page.jade
+include ../getting-started/mixins/getting-started-mixins.jade
 
 block content
 	#application
 		#left-nav
+			dl.accordion(data-accordion='data-accordion')
+				dd.accordion-navigation
+					a(href='#panel1') About TEAM Mentor
+					#panel1.content.active
+						.list-group
+							a(href='#') What is new in this release?
+							a(href='#') Introduction to TEAM Mentor
+							a(href='#') Quick Start Guide
+							a(href='#') Support
+					// panel1-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel2') Installation
+					#panel2.content
+						.list-group
+							a(href='#') Minimum Requirements
+							a(href='#') Installing TEAM Mentor on IIS 6.0
+							a(href='#') Installing TEAM Mentor on IIS 7.0 and 7.5
+							a(href='#') Running TEAM Mentor locally (using Cassini)
+							a(href='#') Upgrading TEAM Mentor
+					// panel2-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') Administration
+					#panel3.content
+						.list-group
+							a(href='#') Managing Users
+							a(href='#') Installing Libraries
+							a(href='#') Removing Libraries
+							a(href='#') Editing the Default Configuration
+							a(href='#') Troubleshooting
+							a(href='#') User_Data Git Support
+							a(href='#') TM_Libraries Git Support
+							a(href='#') Configuring Email
+							a(href='#') Google Analytics
+							a(href='#') Active Directory Support
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') UI Elements
+					#panel3.content
+						.list-group
+							a(href='#') Using the Control Panel
+							a(href='#') User Interface Overview
+							a(href='#') Signing Up for Regular Accounts
+							a(href='#') Article List Pane
+							a(href='#') Banner Pane
+							a(href='#') Filters Pane
+							a(href='#') Navigation Pane
+							a(href='#') Preview Pane
+							a(href='#') Forgot Password
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') Reading Content
+					#panel3.content
+						.list-group
+							
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') Editing Content
+					#panel3.content
+						p Hi
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') Eclipse for Fortify plugin
+					#panel3.content
+						p Hi
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') HP Fortify SCA UI Integration
+					#panel3.content
+						p Hi
+					// panel3-content
+				// accordian-navigation
+				dd.accordion-navigation
+					a(href='#panel3') Visual Studio Plugin
+					#panel3.content
+						p Hi
+					// panel3-content
+				// accordian-navigation
+			// accordian
 		// left-nav
 		#results
-			include:md ../../content/teamMentor/help/index.md
+			#summary
+				+team-mentor-summary
 			br
-			hr
 			include:md ../../content/teamMentor/help/video.md
-			br
-			hr
-			include:md ../../content/teamMentor/help/faq.md
-			br
 		// results
 		#right-nav
 		// right-nav
