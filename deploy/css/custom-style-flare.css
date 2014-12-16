@@ -37,6 +37,18 @@ nav {
   overflow-y: auto;
 }
 
+#loginwall {
+  -webkit-order: 7;
+  -webkit-flex: 100%;
+  overflow-y: auto;
+}
+
+#summary {
+  -webkit-order: 8;
+  -webkit-flex: 100%;
+  overflow-y: auto;
+}
+
 #left-nav {
   -webkit-order: 7;
   -webkit-flex: 100%;
@@ -92,7 +104,7 @@ nav {
 }
 
 #help-icon {
-  padding: 20px 0 0 50px;
+  padding: 20px 20px 0 0;
   -webkit-order: 3;
   -webkit-flex: 10%;
   text-align: right;
@@ -164,6 +176,11 @@ nav a:hover, nav a p:hover {
 
 }
 
+.tabs-content .content {
+  padding: 20px;
+  padding-bottom: 0px;
+}
+
 /* ===== == = === 20em (320px) === = == ===== */
 
 @media only screen and (min-width : 20em) {
@@ -212,8 +229,20 @@ nav a:hover, nav a p:hover {
     -webkit-flex: 25%;
   }
 
+  #loginwall {
+    -webkit-order: 8;
+  }
+
+  #summary {
+    -webkit-order: 7;
+  }
+
+  #loginwall, #summary {
+    padding: 0 20px 20px 20px;
+  }
+
   #results {
-    order: 8;
+    -webkit-order: 8;
     -webkit-flex: 50%;
     height: 100% !important;
   }
@@ -274,6 +303,18 @@ nav a:hover, nav a p:hover {
 
   #directory-list button, #navigate-list button {
     display: none;
+  }
+
+  .tabs-content .content {
+    padding: 40px;
+    padding-bottom: 0px;
+    padding-top: 20px;
+  }
+
+  #loginwall > * {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 20px;
   }
 }
 
