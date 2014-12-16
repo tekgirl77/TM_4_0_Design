@@ -51,6 +51,10 @@ nav {
   overflow-y: auto;
 }
 
+#right-nav:empty, #left-nav:empty {
+  display: none;
+}
+
 #right-nav {
   -webkit-order: 8;
   -webkit-flex: 100%;
