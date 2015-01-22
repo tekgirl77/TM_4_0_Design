@@ -76,7 +76,14 @@ class Express_Service
   start:()=>
     if process.mainModule.filename.not_Contains('node_modules/mocha/bin/_mocha')
       console.log("[Running locally or in Azure] Starting 'TM Jade' Poc on port " + @app.port)
-    @app.server = @app.listen(@app.port)
+    if @app.port == '443'
+      httpsOptions =
+        key: fs.readFileSync('private.key'), # Located at the root of local TM_4_0_Design/ directory.
+        cert: fs.readFileSync('public.cert') # Located at the root of local TM_4_0_Design/ directory.
+      @app.server = https.createServer(httpsOptions, @app).listen(@app.port)
+      console.log("Running over HTTPS")
+    else
+      @app.server = @app.listen(@app.port)
 
   checkAuth: (req, res, next, config)=>
     if (@.loginEnabled and req and req.session and !req.session.username)

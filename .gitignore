@@ -10,3 +10,5 @@ UNO_Library_Data.json
 QA/_screenshots
 bower_components
 .logs
+private.key
+public.cert
