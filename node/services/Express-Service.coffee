@@ -9,13 +9,16 @@ helmet          = require('helmet')
 https           = require('https')
 fs              = require('fs')
 enforce_ssl     = require('express-enforces-ssl')
+conf            = require('../../../TM_4_0_GraphDB/.tm-Config.json')
 
 
 class Express_Service
   constructor: ()->
     @.app         = express()
     @loginEnabled = true;
-    @.app.port    = process.env.PORT || 1337;
+    @.app.port    = conf.TMListen.Port
+    @.app.ip      = conf.TMListen.IP
+    @.app.ssl     = conf.SSL.Enable
     @.expressSession = null
 
   setup: ()=>
@@ -67,7 +70,8 @@ class Express_Service
       preload: true # Submits site for baked-into-Chrome HSTS by adding preload to header - https://hstspreload.appspot.com/
     }));
     @.app.use(helmet.hidePoweredBy()); # hides "X-Powered-By: Express" set by default in Express header
-    #@.app.use(enforce_ssl());
+    if @app.ssl == 'True'
+      @.app.use(enforce_ssl());
 
   map_Route: (file)=>
     require(file)(@.app,@);
@@ -76,14 +80,14 @@ class Express_Service
   start:()=>
     if process.mainModule.filename.not_Contains('node_modules/mocha/bin/_mocha')
       console.log("[Running locally or in Azure] Starting 'TM Jade' Poc on port " + @app.port)
-    if @app.port == '443'
+    if @app.ssl == 'True'
       httpsOptions =
-        key: fs.readFileSync('private.key'), # Located at the root of local TM_4_0_Design/ directory.
-        cert: fs.readFileSync('public.cert') # Located at the root of local TM_4_0_Design/ directory.
-      @app.server = https.createServer(httpsOptions, @app).listen(@app.port)
-      console.log("Running over HTTPS")
+        key: fs.readFileSync(conf.PrivateKey.Location), # Located at the root of local TM_4_0_Design/ directory.
+        cert: fs.readFileSync(conf.Cert.Location) # Located at the root of local TM_4_0_Design/ directory.
+      @app.server = https.createServer(httpsOptions, @app).listen(@app.port, @app.ip)
+      console.log("Running securely over HTTPS")
     else
-      @app.server = @app.listen(@app.port)
+      @app.server = @app.listen(@app.port, @app.ip)
 
   checkAuth: (req, res, next, config)=>
     if (@.loginEnabled and req and req.session and !req.session.username)
