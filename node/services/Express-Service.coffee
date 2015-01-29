@@ -16,7 +16,7 @@ class Express_Service
   constructor: ()->
     @.app         = express()
     @loginEnabled = true;
-    @.app.port    = conf.TMListen.Port
+    @.app.port    = process.env.PORT || conf.TMListen.Port
     @.app.ip      = conf.TMListen.IP
     @.app.ssl     = conf.SSL.Enable
     @.expressSession = null
