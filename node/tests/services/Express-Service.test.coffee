@@ -7,7 +7,7 @@ describe 'services | Express-Service.test', ()->
   it 'constructor',->
     using new Express_Service(),->
       @.app        .assert_Is_Function() # can't seem to have define type(yet)
-      @.app.port   .assert_Is_Number()
+      Number(@.app.port)   .assert_Is_Number()
       @loginEnabled.assert_Is_True()
       assert_Is_Null(@.expressSession)
 
