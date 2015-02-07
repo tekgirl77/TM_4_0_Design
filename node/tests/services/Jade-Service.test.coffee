@@ -20,6 +20,7 @@ describe "services | Jade-Service.js", ()->
             @.calculateTargetPath  .assert_Is_Function()
             @.enableCache          .assert_Is_Function()
             @.cacheEnabled         .assert_Is_Function()
+            @.findUnescapeChars    .assert_Is_Function()
 
             @.target_Folder         .assert_Is(@.config.jade_Compilation)
     
@@ -92,10 +93,32 @@ describe "services | Jade-Service.js", ()->
       using new Jade_Service(),->
         @.renderMixin('search-mixins', 'results', {resultsTitle : 'AAAA'})
             .assert_Contains ['<!DOCTYPE html><html lang="en"', 'link href="/static/css/custom-style.css']
-            #                 '<h5 id="resultsTitle">AAAA</h5>']
-
-
+          #                 '<h5 id="resultsTitle">AAAA</h5>']
         done()
+
+    it.only 'Issue_385_No_jade_raw_html', (done)->
+      require('log-buffer')
+      jadeService = new Jade_Service();
+      jadeParentDir = jadeService.repo_Path.path_Combine('/source/jade/')
+
+      recursiveWalk = (parentDirPath, filelist)->
+        filelist = filelist || []
+        files = fs.readdirSync(parentDirPath)
+        console.log "files are " + files
+        files.forEach (file)->
+          if fs.statSync(parentDirPath + file).isDirectory()
+            filelist = recursiveWalk(parentDirPath + file + "/", filelist)
+          else
+            filelist.push parentDirPath + file
+          return
+        filelist
+
+      jadeFiles = recursiveWalk(jadeParentDir, filelist = [])
+      for file in jadeFiles
+        jadeService.findJadeUnescapeChars(file)
+      console.log "jadeFiles are " + jadeFiles
+
+      done()
 
     ###
     it('cleanCacheFolder', function()

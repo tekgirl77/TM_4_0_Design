@@ -13,7 +13,6 @@ class JadeService
       @.mixin_Extends = '../_layouts/page_clean'
       @.config.createCacheFolders()                             # ensure cache folders exists
 
-
     enableCache: (value)->                           #set to true to allow caching of jade compiled files
       if(value != undefined)
         @.config.enable_Jade_Cache = value
@@ -82,6 +81,18 @@ class JadeService
              "block content                 \n" +            # where rendered mixin will be placed
              "  +#{safeMixin}                 "              # mixin to render
       return jade.compile(code, {filename: dummyJade })(params)
+
+    findJadeUnescapeChars: (jadeFile)->
+      readline = require('linebyline')
+      fileContents = readline(jadeFile)
+        .on 'line', (line)->
+          if line.trim().charAt(0) == '|'
+            console.log "Found the pipe at " + jadeFile + "\n" + line
+          for word in line.trim().split(" ")
+            if word.charAt(word.length-1) == '!'
+              console.log "Found the ! at " + jadeFile + "\n" + line + "\n" + word
+        .on 'error', (err)->
+          throw err
 
 
 module.exports = JadeService
