@@ -97,7 +97,6 @@ describe "services | Jade-Service.js", ()->
         done()
 
     it.only 'Issue_385_No_jade_raw_html', (done)->
-      require('log-buffer')
       jadeService = new Jade_Service();
       jadeParentDir = jadeService.repo_Path.path_Combine('/source/jade/')
 

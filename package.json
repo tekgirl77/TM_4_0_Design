@@ -36,12 +36,13 @@
     "fluentnode": "^0.3.0",
     "github": "latest",
     "jade": "latest",
+    "linebyline": "0.0.7",
     "marked": "latest",
     "nedb": "latest",
     "request": "latest",
     "supervisor": "latest",
-    "winser": "latest",
-    "teammentor": "^0.1.2"
+    "teammentor": "^0.1.2",
+    "winser": "latest"
   },
   "devDependencies": {
     "chai": "latest",
