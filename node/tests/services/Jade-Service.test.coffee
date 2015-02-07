@@ -115,8 +115,6 @@ describe "services | Jade-Service.js", ()->
       jadeFiles = recursiveWalk(jadeParentDir, filelist = [])
       for file in jadeFiles
         jadeService.findJadeUnescapeChars(file)
-      console.log "jadeFiles are " + jadeFiles
-
       done()
 
     ###
