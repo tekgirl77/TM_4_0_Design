@@ -65,8 +65,9 @@ class Express_Service
       console.log("[Running locally or in Azure] Starting 'TM Jade' Poc on port " + @app.port)
     if @app.ssl == 'True'
       httpsOptions =
-        key: fs.readFileSync(conf.PrivateKey.Location), # Located at the root of local TM_4_0_Design/ directory.
-        cert: fs.readFileSync(conf.Cert.Location) # Located at the root of local TM_4_0_Design/ directory.
+        key: fs.readFileSync(conf.SSL.PrivateKey), # Located in the .tm-Config.json file
+        cert: fs.readFileSync(conf.SSL.Cert), # Located in the .tm-Config.json file
+        ca: fs.readFileSync(conf.SSL.CA) # Located in the .tm-Config.json file
       @app.server = https.createServer(httpsOptions, @app).listen(@app.port, @app.ip)
       console.log("Running securely over HTTPS")
     else

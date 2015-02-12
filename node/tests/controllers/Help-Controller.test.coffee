@@ -119,10 +119,12 @@ describe 'controllers | Help-Controller.test', ()->
       help_Controller.renderPage();
 
 
-    it 'handle broken images bug', (done)->
+    it.only 'handle broken images bug', (done)->
       gitHub_Path = 'https://raw.githubusercontent.com/TMContent/Lib_Docs/master/_Images/'
       local_Path  = '/Image/'
       test_image  = 'signup1.jpg'
+      if app.ssl == 'True'
+        request = supertest('https://' + app.ip + ':' + app.port)
 
       check_For_Redirect = ()->
               supertest(app).get(local_Path + test_image)
