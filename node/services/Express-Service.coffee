@@ -5,6 +5,10 @@ bodyParser      = null
 session         = null
 path            = null
 express         = null
+https           = null
+fs              = null
+enforce_ssl     = null
+conf            = null
 
 class Express_Service
   constructor: ()->
@@ -15,10 +19,10 @@ class Express_Service
     session          = require 'express-session'
     path             = require "path"
     express          = require 'express'
-    https            = require('https')
-    fs               = require('fs')
-    enforce_ssl      = require('express-enforces-ssl')
-    conf             = require('../../../TM_4_0_GraphDB/.tm-Config.json')
+    https            = require 'https'
+    fs               = require 'fs'
+    enforce_ssl      = require 'express-enforces-ssl'
+    conf             = require '../../../TM_4_0_GraphDB/.tm-Config.json'
 
     @.app            = express()
     @loginEnabled    = true;
