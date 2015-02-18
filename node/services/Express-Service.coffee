@@ -1,21 +1,27 @@
-Config          = require('../misc/Config')
-Jade_Service    = require('../services/Jade-Service')
-Express_Session = require('../misc/Express-Session')
-bodyParser      = require('body-parser')
-session         = require('express-session')
-path            = require("path")
-express         = require('express')
-helmet          = require('helmet')
-https           = require('https')
-fs              = require('fs')
-enforce_ssl     = require('express-enforces-ssl')
-conf            = require('../../../TM_4_0_GraphDB/.tm-Config.json')
-
+Config          = null
+Jade_Service    = null
+Express_Session = null
+bodyParser      = null
+session         = null
+path            = null
+express         = null
 
 class Express_Service
   constructor: ()->
-    @.app         = express()
-    @loginEnabled = true;
+    Config           = require '../misc/Config'
+    Jade_Service     = require '../services/Jade-Service'
+    Express_Session  = require '../misc/Express-Session'
+    bodyParser       = require 'body-parser'
+    session          = require 'express-session'
+    path             = require "path"
+    express          = require 'express'
+    https            = require('https')
+    fs               = require('fs')
+    enforce_ssl      = require('express-enforces-ssl')
+    conf             = require('../../../TM_4_0_GraphDB/.tm-Config.json')
+
+    @.app            = express()
+    @loginEnabled    = true;
     @.app.port    = process.env.PORT || conf.TMListen.Port
     @.app.ip      = conf.TMListen.IP
     @.app.ssl     = conf.SSL.Enable
@@ -28,6 +34,8 @@ class Express_Service
     @add_Session()      # for now not using the async version of add_Session
     @set_Views_Path()
     @set_Secure_Headers()
+    @.map_Route('../routes/flare_routes')
+    @.map_Route('../routes/routes')
     @
 
   add_Session: (sessionFile)=>
@@ -40,8 +48,8 @@ class Express_Service
 
 
   set_BodyParser: ()=>
-    @.app.use(bodyParser.json()                        );     # to support JSON-encoded bodies
-    @.app.use(bodyParser.urlencoded({ extended: true }));     # to support URL-encoded bodies
+    @.app.use(bodyParser.json({limit:'1kb'})                       );     # to support JSON-encoded bodies
+    @.app.use(bodyParser.urlencoded({limit:'1kb', extended: true }));     # to support URL-encoded bodies
 
   set_Config:()=>
     @.app.config = new Config(null, false);
@@ -61,7 +69,7 @@ class Express_Service
     @
 
   start:()=>
-    if process.mainModule.filename.not_Contains('node_modules/mocha/bin/_mocha')
+    if process.mainModule.filename.not_Contains(['node_modules','mocha','bin','_mocha'])
       console.log("[Running locally or in Azure] Starting 'TM Jade' Poc on port " + @app.port)
     if @app.ssl == 'True'
       httpsOptions =
