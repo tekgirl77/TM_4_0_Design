@@ -3,20 +3,20 @@
 - var tm_version  = 'TEAM Mentor v4.0 (Alpha 15)'
 
 mixin navigate-link
-    i.fi-map
-    | Navigate
+    i.fi-list-thumbnails
+    span Index
 
 mixin search-link
     i.fi-magnifying-glass
-    | Search
+    span Search
 
 mixin help-link
     i.fi-info
-    | Help
+    span Help
 
 mixin logout-link
     i.fi-power
-    | Logout
+    span Logout
 
 mixin copyright
     #copyright
@@ -31,4 +31,4 @@ mixin copyright
                         a(href='mailto:support@securityinnovation.com') support@securityinnovation.com
                     li
                         +i-toc
-                        a(href="../guest/terms-and-conditions.html") Terms & Conditions
+                        a#terms-and-conditions(href="../misc/terms-and-conditions") Terms & Conditions

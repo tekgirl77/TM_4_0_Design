@@ -8,7 +8,7 @@ mixin usp-div
 				h2
 					include:md ../../content/landing-pages/usp.md
 				.row
-					.small-12.large-offset-3.large-6.end.columns
+					.small-12.medium-offset-3.medium-6.end.columns
 						a(href='../getting-started/index')
 							+start-trial-button
 
@@ -96,10 +96,8 @@ mixin features-div
 mixin call-to-action-div
 	#call-to-action
 		.row
-			.small-12.large-offset-2.large-8.end.columns
+			.small-12.medium-offset-2.medium-8.end.columns
 				include:md ../../content/landing-pages/call-to-action.md
-				br
-				br
 				a(href='../getting-started/index')
 					+see-for-yourself-button
 
@@ -116,7 +114,7 @@ mixin footer-div
 						ul
 							li
 								+i-phone
-								| +1.978.694.1008
+								span +1.978.694.1008
 							li
 								+i-email
 								a(href='mailto:support@securityinnovation.com') support@securityinnovation.com
@@ -124,7 +122,7 @@ mixin footer-div
 						ul
 							li
 								+i-marker
-								| 187 Ballardvale Street, Suite A202
+								span 187 Ballardvale Street, Suite A202
 							li Wilmington, MA 01887
 					.small-12.large-4.columns
 						ul
@@ -133,4 +131,4 @@ mixin footer-div
 								a(href="http://www.twitter.com/SecInnovation", target="_blank") @SecInnovation
 							li
 								+i-toc
-								a(href="../guest/terms-and-conditions.html") Terms & Conditions
+								a#terms-and-conditions(href="../misc/terms-and-conditions") Terms & Conditions
